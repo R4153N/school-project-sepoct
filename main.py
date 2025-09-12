@@ -2,16 +2,7 @@
 import sys
 import time
 import random
-
-#def slow_text(text, min_delay=0.02, max_delay=0.3, newLine = False):
-#  for char in text:
-#    sys.stdout.write(char)
-#    sys.stdout.flush()
-#    time.sleep(random.uniform(min_delay, max_delay))
-#
-#  if newLine:
-#      print()
-
+from dir.func import heal
 
 stats = {
   'maxhealth' : 100,
@@ -19,8 +10,10 @@ stats = {
   'heal' : 20
 
 }
+health = int(100)
 
-health = 100
+
+
 
 money = 500
 game = True
@@ -61,10 +54,7 @@ while game == True and health > 0:
         dummy['health'] -= stats['attack']
         vchoice = True
       elif choice.lower() == 'heal':
-        health += stats['heal']
-        if health >stats['maxhealth']:
-          health =stats['maxhealth']
-        print('you have chosen to heal, your health is now', health)
+        health = heal(health, stats)
         vchoice = True
       elif choice.lower() == 'run':
         print('you can not run in the tutorial fight, please choose again')
@@ -90,31 +80,10 @@ while game == True and health > 0:
   game = False
 
 
-lvlvalid = False
-levels = ''
-temp = f''' 
-  
-  Congratulations, you have leveled up after defeating the dummy, please choose between upgrading either maxhealth, attack or your healing ability, 
-
-  please choose either maxhealth, attack or heal.
-
-  '''
-print(temp)
-while lvlvalid == False:
-  print('')
-  levels = input('')
-  levels = levels.lower()
-  if levels in stats:
-    stats[levels] += 5
-    
-    lvlvalid = True
-  else:
-    print(' You did not make a valid choice, please only choose maxhealt, attack or heal ')
+levelup()
 
 
 
-levels  = ''
-lvlvalid = False
 
 poison = ''
 game = True
