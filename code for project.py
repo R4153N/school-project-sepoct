@@ -13,10 +13,15 @@ import random
 #      print()
 
 
-maxhealth = 10.0
-attack = 10
-heal = 20
+stats = {
+  'maxhealth' : 100,
+  'attack' : 10,
+  'heal' : 20
+
+}
+
 health = 100
+
 money = 500
 game = True
 vchoice = False
@@ -37,7 +42,7 @@ while game == True and health > 0:
     When in combat, you have the choice to either attack, defend, run, or heal (you can not heal past your max health)
 
     You will practice on this dummy
-    You currently deal {attack} damage per shot, the dummies health is 5.0
+    You currently deal { stats['attack'] } damage per shot, the dummies health is 5.0
 
 
     """
@@ -52,13 +57,13 @@ while game == True and health > 0:
       print('')
       choice = input('')
       if choice.lower() == 'attack':
-        print('attack successful, you have done ', attack, 'damage')
-        dummy['health'] -= attack
+        print('attack successful, you have done ', stats['attack'], 'damage')
+        dummy['health'] -= stats['attack']
         vchoice = True
       elif choice.lower() == 'heal':
-        health += heal
-        if health > maxhealth:
-          health = maxhealth
+        health += stats['heal']
+        if health >stats['maxhealth']:
+          health =stats['maxhealth']
         print('you have chosen to heal, your health is now', health)
         vchoice = True
       elif choice.lower() == 'run':
@@ -72,7 +77,7 @@ while game == True and health > 0:
       else: 
         print('invalid choice')
     print()
-    if choice != 'defend':
+    if choice != 'defend' and dummy['health'] > 0:
       print('the dummy attacks you, dealing', dummy['attack'], 'damage ')
       print()
       health -= dummy['attack']
@@ -84,11 +89,41 @@ while game == True and health > 0:
     break  
   game = False
 
+
+lvlvalid = False
+levels = ''
+temp = f''' 
+  
+  Congratulations, you have leveled up after defeating the dummy, please choose between upgrading either maxhealth, attack or your healing ability, 
+
+  please choose either maxhealth, attack or heal.
+
+  '''
+print(temp)
+while lvlvalid == False:
+  print('')
+  levels = input('')
+  levels = levels.lower()
+  if levels in stats:
+    stats[levels] += 5
+    
+    lvlvalid = True
+  else:
+    print(' You did not make a valid choice, please only choose maxhealt, attack or heal ')
+
+
+
+levels  = ''
+lvlvalid = False
+
 poison = ''
 game = True
 while game == True:
-  lvl1text1 = ''' 
+  lvl1text1 = f''' 
     
+    All of your stats now have improved by 5
+
+
     Sensei:
 
     Impressive, it has been a long time since I have seen a warrior with such potential, maybe we will finally be freed from the demon king's reign after all...
@@ -107,3 +142,11 @@ while game == True:
     After travelling for hours the sun starts to set and you realise you must rest, luckily you see a cave in the side of the mountain nearby, you grab some wood for 
     
     ''' 
+  
+  spider = {
+    'attack' : 5
+
+  }
+
+
+
