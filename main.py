@@ -158,9 +158,6 @@ game = True
 while game == True:
   lvl1text1 = f''' 
     
-    All of your stats now have improved by 5
-
-
     Sensei:
 
     Impressive, it has been a long time since I have seen a warrior with such potential, maybe we will finally be freed from the demon king's reign after all...
@@ -180,7 +177,8 @@ while game == True:
     
     ''' 
   
-  
+  slow_text(lvl1text1)
+
   
   spider = {
     'attack' : 5

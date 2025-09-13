@@ -2,7 +2,7 @@ import sys
 import time
 import random
 import colorama
-from colorama import Fore, Back, Style+
+from colorama import Fore, Back, Style
 
 def heal(health, stats):
     health += stats['heal']
