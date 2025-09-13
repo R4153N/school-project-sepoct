@@ -1,17 +1,8 @@
 import sys
 import time
 import random
-
-
-
-def slow_text(text, min_delay=0.005, max_delay=0.1, newLine = False):
-  for char in text:
-    sys.stdout.write(char)
-    sys.stdout.flush()
-    time.sleep(random.uniform(min_delay, max_delay))
-
-  if newLine:
-      print()
+import colorama
+from colorama import Fore, Back, Style+
 
 def heal(health, stats):
     health += stats['heal']
@@ -21,7 +12,7 @@ def heal(health, stats):
 
 
 
-def levelup():
+def levelup(stats):
   lvlvalid = False
   levels = ''
   temp = f''' 
@@ -34,7 +25,8 @@ def levelup():
   print(temp)
   while lvlvalid == False:
     print('')
-    levels = input('')
+    levels = input(Fore.BLUE + '')
+    print(Fore.GREEN + '')
     levels = levels.lower()
     if levels in stats:
       stats[levels] += 5
