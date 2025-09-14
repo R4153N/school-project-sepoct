@@ -20,7 +20,7 @@ def prnt_below(text):
     terminal_size = shutil.get_terminal_size()
     width = terminal_size.columns
     horizontal_padding = (width -len(text)) // 2
-    print(" " * horizontal_padding + text)
+    slow_text(" " * horizontal_padding + text)
 
 
 slow_text(colour_text_menu)
@@ -93,24 +93,23 @@ while game == True and health > 0:
 
     """
   slow_text(tutorial_text, vertical_padding=False)
-  #print(tutorial_text)
   vheal = False
   chheal = ''
 
   while dummy['health'] > 0:
 
-    print('')
+    slow_text('')
 
     while vchoice == False:
       
       print('The dummies health is', dummy['health'],'yours is', health, 'what would you like to do? ')
       
-      print('')
+      slow_text('')
       
       choice = input(Fore.BLUE + '')
-      print(Fore.GREEN + '')
+      slow_text(Fore.GREEN + '')
       if choice.lower() == 'attack':
-        print('attack successful, you have done ', stats['attack'], 'damage',)
+        slow_text('attack successful, you have done ', stats['attack'], 'damage',)
         dummy['health'] -= stats['attack']
         vchoice = True
       
@@ -119,30 +118,30 @@ while game == True and health > 0:
         vchoice = True
       
       elif choice.lower() == 'run':
-        print('you can not run in the tutorial fight, please choose again')
+        slow_text('you can not run in the tutorial fight, please choose again')
       
       elif choice.lower() == 'defend':
-        print('the dummy attacks you, dealing', dummy['attack'] / 2, 'damage ')
-        print()
-        print('defence successful')
+        slow_text('the dummy attacks you, dealing', dummy['attack'] / 2, 'damage ')
+        slow_text()
+        slow_text('defence successful')
         vchoice = True
         health -= dummy['attack'] / 2
       
       else: 
-        print('invalid choice')
+        slow_text('invalid choice')
     
-    print()
+    slow_text()
     
     if choice != 'defend' and dummy['health'] > 0:
-      print('the dummy attacks you, dealing', dummy['attack'], 'damage ')
-      print()
+      slow_text('the dummy attacks you, dealing', dummy['attack'], 'damage ')
+      slow_text()
       health -= dummy['attack']
-      print()
+      slow_text()
 
     vchoice = False
   
   if health <= 0:
-    print('You died, the demon king lives on... ')
+    slow_text('You died, the demon king lives on... ')
     break  
   
   game = False
@@ -152,8 +151,7 @@ stats = levelup(stats)
 
 
 
-
-poison = ''
+poisonturns = 0
 game = True
 while game == True:
   lvl1text1 = f''' 
@@ -175,15 +173,98 @@ while game == True:
 
     After travelling for hours the sun starts to set and you realise you must rest, luckily you see a cave in the side of the mountain nearby, you grab some wood for 
     
+
+
+    #more text to be added# 
+
+    '''
+  slow_text(lvl1text1)
+  lvl1text1 = f'''
+       (
+               )
+              (
+        /\  .-"""-.  /|
+       //\\/  ,,,  \//\\
+       |/\| ,;;;;;, |/\|
+       //\\\;-"""-;///\\
+      //  \/   .   \/  \\
+     (| ,-_| \ | / |_-, |)
+       //`__\.-.-./__`\\
+      // /.-(() ())-.\ \\
+     (\ |)   '---'   (| /)
+      ` (|           |) `
+        \)           (/
+
+
     ''' 
   
-  slow_text(lvl1text1)
+  print(lvl1text1)
 
   
   spider = {
-    'attack' : 5
-
+    'attack' : 5,
+    'health' : 150,
+    'poison' :  4
   }
 
+  pchance = [0, 0, 0, 0, 0, 0, 1, 1, 1, 1]
+  while spider['health'] > 0:
+    vchoice = False
+      
+    slow_text('The dumspidersmies health is', spider['health'],'yours is', health, 'what would you like to do? ')
+      
+    slow_text('')
+
+    if poisonturns > 0:
+        health -= spider['poison']
+        poisonturns -= 1
+        slow_text('You have taken', spider['poison'], 'poison damage, you now have', poisonturns, 'turns left of poison')
 
 
+    vpois = random.choice(pchance)
+
+    while vchoice == False:
+        choice = input(Fore.BLUE + '')
+        slow_text(Fore.GREEN + '')
+        if choice.lower() == 'attack':
+            slow_text('attack successful, you have done ', stats['attack'], 'damage',)
+            spider['health'] -= stats['attack']
+            vchoice = True
+
+        elif choice.lower() == 'heal':
+            health = heal(health, stats)
+            vchoice = True
+      
+        elif choice.lower() == 'run':
+            slow_text('you can not run in a boss fight, please choose again')
+      
+        elif choice.lower() == 'defend':
+            slow_text('the spider attacks you, dealing', spider['attack'] / 2, 'damage ')
+            
+            
+            slow_text()
+            slow_text('defence successful')
+            vchoice = True
+            health -= spider['attack'] / 2
+      
+        else: 
+            slow_text('invalid choice')
+    
+            slow_text()
+    
+    if choice != 'defend' and spider['health'] > 0:
+        slow_text('the spider attacks you, dealing', spider['attack'], 'damage ')
+        slow_text()
+        if vpois == 1:
+            slow_text('The spider has poisoned you, you will take an extra 4 damage per turn, the only way to cure poison is by healing')
+            poisonturns = 2   
+            slow_text() 
+
+        health -= spider['attack']
+
+    if poisonturns > 0:
+        slow_text('You have', poisonturns, 'turns left of poison')
+    vhoice = False
+  game = False
+
+#sphinx type shit

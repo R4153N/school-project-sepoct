@@ -3,6 +3,7 @@ import time
 import random
 import colorama
 from colorama import Fore, Back, Style
+from vis import slow_text
 
 def heal(health, stats):
     health += stats['heal']
@@ -22,18 +23,18 @@ def levelup(stats):
     please choose either maxhealth, attack or heal.
 
     '''
-  print(temp)
+  slow_text(temp)
   while lvlvalid == False:
-    print('')
+    slow_text('')
     levels = input(Fore.BLUE + '')
-    print(Fore.GREEN + '')
+    slow_text(Fore.GREEN + '')
     levels = levels.lower()
     if levels in stats:
       stats[levels] += 5
     
       lvlvalid = True
     else:
-      print(' You did not make a valid choice, please only choose maxhealt, attack or heal ')
+      slow_text(' You did not make a valid choice, please only choose maxhealt, attack or heal ')
 
 
   levels  = ''
@@ -48,4 +49,4 @@ def levelup(stats):
   
 
   '''
-  print(temp)
+  slow_text(temp)
