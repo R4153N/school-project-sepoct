@@ -11,15 +11,9 @@ def slow_text(text, min_delay=0.01, max_delay=0.02, newLine = False, vertical_pa
     terminal_size = shutil.get_terminal_size()
     width = terminal_size.columns
     height = terminal_size.lines
+    
 
-
-    if vertical_padding:
-        vertical_term = height // 2
-
-        print("\n" * vertical_term, end="")
-
-    horizontal_padding = (width - len(text)) // 2
-    print(" " * horizontal_padding, end="")
+    
 
 
     for char in text:

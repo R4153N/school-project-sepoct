@@ -16,11 +16,11 @@ colorama.init()
 colour_text_menu = Fore.GREEN + Style.BRIGHT + Back.BLACK
 
 
-def prnt_below(text):
-    terminal_size = shutil.get_terminal_size()
-    width = terminal_size.columns
-    horizontal_padding = (width -len(text)) // 2
-    slow_text(" " * horizontal_padding + text)
+#def prnt_below(text):
+#    terminal_size = shutil.get_terminal_size()
+#    width = terminal_size.columns
+#    horizontal_padding = (width -len(text)) // 2
+#    slow_text(" " * horizontal_padding + text)
 
 
 slow_text(colour_text_menu)
@@ -57,10 +57,10 @@ while game == True and health > 0:
         \_____/     ||
          /a a\      ||
         /-.^.-\   (_|
-      .  {'wwwww'}-._/|;
-     /   {'wwwww'}  /; || |
-    /` - {'wwwww'}- ;  || |
-   ; ` =| {'www'}|=  _/|| |
+      .  wwwww-._/|;
+     /   wwwww  /; || |
+    /` - wwwww- ;  || |
+   ; ` =| www|=  _/|| |
    |   \| |~| |  |/ || |
    |\   \ | | |  ;  || |
    | \   ||=| |=<\  || |
@@ -92,7 +92,7 @@ while game == True and health > 0:
 
 
     """
-  slow_text(tutorial_text, vertical_padding=False)
+  slow_text(tutorial_text)
   vheal = False
   chheal = ''
 
@@ -102,6 +102,8 @@ while game == True and health > 0:
 
     while vchoice == False:
       
+      
+
       print('The dummies health is', dummy['health'],'yours is', health, 'what would you like to do? ')
       
       slow_text('')
@@ -109,7 +111,7 @@ while game == True and health > 0:
       choice = input(Fore.BLUE + '')
       slow_text(Fore.GREEN + '')
       if choice.lower() == 'attack':
-        slow_text('attack successful, you have done ', stats['attack'], 'damage',)
+        print('attack successful, you have done ', stats['attack'], 'damage',)
         dummy['health'] -= stats['attack']
         vchoice = True
       
@@ -121,7 +123,7 @@ while game == True and health > 0:
         slow_text('you can not run in the tutorial fight, please choose again')
       
       elif choice.lower() == 'defend':
-        slow_text('the dummy attacks you, dealing', dummy['attack'] / 2, 'damage ')
+        print('the dummy attacks you, dealing', dummy['attack'] / 2, 'damage ')
         slow_text()
         slow_text('defence successful')
         vchoice = True
@@ -186,7 +188,7 @@ while game == True:
         /\  .-"""-.  /|
        //\\/  ,,,  \//\\
        |/\| ,;;;;;, |/\|
-       //\\\;-"""-;///\\
+       //\\\;-"""-;/// \\
       //  \/   .   \/  \\
      (| ,-_| \ | / |_-, |)
        //`__\.-.-./__`\\

@@ -3,7 +3,7 @@ import time
 import random
 import colorama
 from colorama import Fore, Back, Style
-from vis import slow_text
+from dir.vis import slow_text
 
 def heal(health, stats):
     health += stats['heal']
