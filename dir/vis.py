@@ -12,10 +12,7 @@ def slow_text(text, min_delay=0.01, max_delay=0.02, newLine = False, vertical_pa
     width = terminal_size.columns
     height = terminal_size.lines
     
-
     
-
-
     for char in text:
         sys.stdout.write(char)
         sys.stdout.flush()

@@ -49,4 +49,5 @@ def levelup(stats):
   
 
   '''
+  return(stats)
   slow_text(temp)

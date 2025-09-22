@@ -124,7 +124,7 @@ while game == True and health > 0:
       
       elif choice.lower() == 'defend':
         print('the dummy attacks you, dealing', dummy['attack'] / 2, 'damage ')
-        slow_text()
+        print()
         slow_text('defence successful')
         vchoice = True
         health -= dummy['attack'] / 2
@@ -132,13 +132,13 @@ while game == True and health > 0:
       else: 
         slow_text('invalid choice')
     
-    slow_text()
+    print()
     
     if choice != 'defend' and dummy['health'] > 0:
-      slow_text('the dummy attacks you, dealing', dummy['attack'], 'damage ')
-      slow_text()
+      print('the dummy attacks you, dealing', dummy['attack'], 'damage ')
+      print()
       health -= dummy['attack']
-      slow_text()
+      print()
 
     vchoice = False
   
@@ -175,7 +175,8 @@ while game == True:
 
     After travelling for hours the sun starts to set and you realise you must rest, luckily you see a cave in the side of the mountain nearby, you grab some wood for 
     
-
+    
+    You feel exhau
 
     #more text to be added# 
 
@@ -213,14 +214,14 @@ while game == True:
   while spider['health'] > 0:
     vchoice = False
       
-    slow_text('The dumspidersmies health is', spider['health'],'yours is', health, 'what would you like to do? ')
+    print('The dumspidersmies health is', spider['health'],'yours is', health, 'what would you like to do? ')
       
     slow_text('')
 
     if poisonturns > 0:
         health -= spider['poison']
         poisonturns -= 1
-        slow_text('You have taken', spider['poison'], 'poison damage, you now have', poisonturns, 'turns left of poison')
+        print('You have taken', spider['poison'], 'poison damage, you now have', poisonturns, 'turns left of poison')
 
 
     vpois = random.choice(pchance)
@@ -229,7 +230,7 @@ while game == True:
         choice = input(Fore.BLUE + '')
         slow_text(Fore.GREEN + '')
         if choice.lower() == 'attack':
-            slow_text('attack successful, you have done ', stats['attack'], 'damage',)
+            print('attack successful')
             spider['health'] -= stats['attack']
             vchoice = True
 
@@ -238,34 +239,34 @@ while game == True:
             vchoice = True
       
         elif choice.lower() == 'run':
-            slow_text('you can not run in a boss fight, please choose again')
+            print('you can not run in a boss fight, please choose again')
       
         elif choice.lower() == 'defend':
-            slow_text('the spider attacks you, dealing', spider['attack'] / 2, 'damage ')
+            print('the spider attacks you, dealing', spider['attack'] / 2, 'damage ')
             
             
-            slow_text()
+            print('')
             slow_text('defence successful')
             vchoice = True
             health -= spider['attack'] / 2
       
         else: 
             slow_text('invalid choice')
-    
-            slow_text()
+  
+            print()
     
     if choice != 'defend' and spider['health'] > 0:
-        slow_text('the spider attacks you, dealing', spider['attack'], 'damage ')
-        slow_text()
+        print('the spider attacks you, dealing', spider['attack'], 'damage ')
+        print()
         if vpois == 1:
             slow_text('The spider has poisoned you, you will take an extra 4 damage per turn, the only way to cure poison is by healing')
             poisonturns = 2   
-            slow_text() 
+            print() 
 
         health -= spider['attack']
 
     if poisonturns > 0:
-        slow_text('You have', poisonturns, 'turns left of poison')
+        print('You have', poisonturns, 'turns left of poison')
     vhoice = False
   game = False
 
