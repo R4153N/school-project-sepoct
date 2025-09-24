@@ -8,6 +8,7 @@ from colorama import Fore, Back, Style
 from dir.func import heal, levelup
 from dir.vis import slow_text
 import os
+from dir.riddles import answers, riddles
 
 def clear_screen():
      os.system('cls')
@@ -26,7 +27,7 @@ colour_text_menu = Fore.GREEN + Style.BRIGHT + Back.BLACK
 slow_text(colour_text_menu)
 
 clear_screen()
-
+  
 
 
 stats = {
@@ -270,4 +271,17 @@ while game == True:
     vhoice = False
   game = False
 
+
+guessleft = 1
+riddle = random.randint(0, 5)
+print(riddles[riddle])
+answer = answers[riddle]
+print()
+print('what is your answer? ')
+temp = input()
+if temp == answer:
+    print('Congratulations, you have got it correct, you may pass, be careful, it is dangerous up ahead ')
+else:
+    print('Incorrect, you are not worthy, now be punished '
+    '')
 #sphinx type shit
