@@ -143,8 +143,9 @@ while game == True and health > 0:
 
     vchoice = False
   
-  if health <= 0:
-    slow_text('You died, the demon king lives on... ')
+    if health <= 0:
+      slow_text('You died, the demon king lives on, the kingdom waits for their true hero ')
+      exit()
     break  
   
   game = False
@@ -206,7 +207,7 @@ while game == True:
 
   
   spider = {
-    'attack' : 5,
+    'attack' : 10,
     'health' : 150,
     'poison' :  4
   }
@@ -214,8 +215,8 @@ while game == True:
   pchance = [0, 0, 0, 0, 0, 0, 1, 1, 1, 1]
   while spider['health'] > 0:
     vchoice = False
-      
-    print('The dumspidersmies health is', spider['health'],'yours is', health, 'what would you like to do? ')
+    print()
+    print('The spiders health is', spider['health'],'yours is', health, 'what would you like to do? ')
       
     slow_text('')
 
@@ -255,14 +256,19 @@ while game == True:
             slow_text('invalid choice')
   
             print()
-    
+    print()
     if choice != 'defend' and spider['health'] > 0:
         print('the spider attacks you, dealing', spider['attack'], 'damage ')
         print()
         if vpois == 1:
             slow_text('The spider has poisoned you, you will take an extra 4 damage per turn, the only way to cure poison is by healing')
+            
             poisonturns = 2   
             print() 
+
+    if health <= 0:
+        slow_text('you died, the demon king lives on, the kingdom waits for their true hero to arrive')
+        exit()
 
         health -= spider['attack']
 
@@ -272,6 +278,11 @@ while game == True:
   game = False
 
 
+stats = levelup(stats)
+slow_text(f'''
+
+idfk cuh pretend that u encountered a sphinx im too lazy to do this yet
+          ''')
 guessleft = 1
 riddle = random.randint(0, 5)
 print(riddles[riddle])
@@ -284,4 +295,55 @@ if temp == answer:
 else:
     print('Incorrect, you are not worthy, now be punished '
     '')
-#sphinx type shit
+    sphinx = {
+       'attack': 20,
+       'health': 200  
+    }
+    while sphinx['health'] > 0:
+      vchoice = False
+      
+      print('The sphinx health is', sphinx['health'],'yours is', health, 'what would you like to do? ')
+      
+      slow_text('')
+
+
+      while vchoice == False:
+          choice = input(Fore.BLUE + '')
+          slow_text(Fore.GREEN + '')
+          if choice.lower() == 'attack':
+              print('attack successful')
+              sphinx['health'] -= stats['attack']
+              vchoice = True
+
+          elif choice.lower() == 'heal':
+            health = heal(health, stats)
+            vchoice = True
+      
+          elif choice.lower() == 'run':
+            print('you can not run in a boss fight, please choose again')
+      
+          elif choice.lower() == 'defend':
+            print("the sphinx's attacks you, dealing", sphinx['attack'] / 2, 'damage ')
+            
+            
+            print('')
+            slow_text('defence successful')
+            vchoice = True
+            health -= sphinx['attack'] / 2
+      
+          else: 
+            slow_text('invalid choice')
+  
+            print()
+    
+      if choice != 'defend' and sphinx['health'] > 0:
+          print('the sphinx attacks you, dealing', sphinx['attack'], 'damage ')
+          print()
+          print() 
+
+          health -= sphinx['attack']
+      if health <= 0:
+         slow_text('you have died, the demon king lives on, the kingdom waits for their true hero')
+         exit()
+     
+  
