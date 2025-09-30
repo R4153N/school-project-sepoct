@@ -177,10 +177,15 @@ while game == True:
 
     After travelling for hours the sun starts to set and you realise you must rest, luckily you see a cave in the side of the mountain nearby, you grab some wood for 
     
-    
-    You feel exhau
 
-    #more text to be added# 
+    Exhausted and weary from your travel, you decide to take your respite in the cold embrace of the cave.
+
+    
+    You don't notice the allure of sleep claiming you, and wake up the gentle light of dawn beating against your face 
+
+    This warmth, however, is broken by the startling sight of a furry eight legged creature crawling towards you.
+
+
 
     '''
   slow_text(lvl1text1)
@@ -281,7 +286,8 @@ while game == True:
 stats = levelup(stats)
 slow_text(f'''
 
-idfk cuh pretend that u encountered a sphinx im too lazy to do this yet
+    text to be added
+          
           ''')
 guessleft = 1
 riddle = random.randint(0, 5)
