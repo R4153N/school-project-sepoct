@@ -6,7 +6,7 @@ import random
 import colorama
 from colorama import Fore, Back, Style
 from dir.func import heal, levelup
-from dir.vis import slow_text
+from dir.vis import slow_text, col_input, col_intinput
 import os
 from dir.riddles import answers, riddles
 
@@ -14,7 +14,7 @@ def clear_screen():
      os.system('cls')
 
 colorama.init()
-colour_text_menu = Fore.GREEN + Style.BRIGHT + Back.BLACK
+colour_text_menu = Fore.RED + Style.BRIGHT + Back.WHITE
 
 
 #def prnt_below(text):
@@ -23,20 +23,70 @@ colour_text_menu = Fore.GREEN + Style.BRIGHT + Back.BLACK
 #    horizontal_padding = (width -len(text)) // 2
 #    slow_text(" " * horizontal_padding + text)
 
+stats = {
+   
+}
 
 slow_text(colour_text_menu)
 
 clear_screen()
+slow_text(f'''before you start, you must choose a class,
+          
+            choose 1 for the priestess class - which has higher healing, but significantly lower attack and maxhealth,
+          
+            choose 2 for the tank class - which has alot of health, average attack, but can not heal,
+          
+            choose 3 for the warrior class - which has high attack, mediocre health, and mediocre healing
+
+          
+           ''')
+
+
+
+classchoice = int(col_input(''))
+
+while True:
+  if classchoice == 1:
+   stats = {
+      'attack': 6,
+      'maxhealth': 80,
+      'heal': 30
+   }
+   break
+  elif classchoice == 2:
+     stats = {
+        'attack': 10,
+        'maxhealth': 300,
+        'heal': 0
+
+     }
+     break
+  elif classchoice == 3:
+     stats = { 
+        'attack': 20,
+        'maxhealth': 100,
+        'heal': 10
+     }
+     break
+  else:
+     print('invalid choice, please only enter 1, 2 or 3')
+     classchoice = int(col_input(''))
   
 
 
-stats = {
-  'maxhealth' : 100,
-  'attack' : 10,
-  'heal' : 20
 
-}
-health = int(100)
+print(stats)
+
+
+
+
+#stats = {
+#  'maxhealth' : 100,
+#  'attack' : 10,
+#  'heal' : 20
+#
+#}
+health = stats['maxhealth']
 
 
 
@@ -109,15 +159,14 @@ while game == True and health > 0:
       
       slow_text('')
       
-      choice = input(Fore.BLUE + '')
-      slow_text(Fore.GREEN + '')
+      choice = col_input('')
       if choice.lower() == 'attack':
         print('attack successful, you have done ', stats['attack'], 'damage',)
         dummy['health'] -= stats['attack']
         vchoice = True
       
       elif choice.lower() == 'heal':
-        health = heal(health, stats)
+        health = heal(health, stats, classchoice)
         vchoice = True
       
       elif choice.lower() == 'run':
@@ -146,12 +195,16 @@ while game == True and health > 0:
     if health <= 0:
       slow_text('You died, the demon king lives on, the kingdom waits for their true hero ')
       exit()
-    break  
-  
+      
+    
+
+
+
+
   game = False
 
 
-stats = levelup(stats)
+stats = levelup(stats, classchoice)
 
 
 
@@ -183,6 +236,7 @@ while game == True:
     
     You don't notice the allure of sleep claiming you, and wake up the gentle light of dawn beating against your face 
 
+    
     This warmth, however, is broken by the startling sight of a furry eight legged creature crawling towards you.
 
 
@@ -212,7 +266,7 @@ while game == True:
 
   
   spider = {
-    'attack' : 10,
+    'attack' : 15,
     'health' : 150,
     'poison' :  4
   }
@@ -234,15 +288,14 @@ while game == True:
     vpois = random.choice(pchance)
 
     while vchoice == False:
-        choice = input(Fore.BLUE + '')
-        slow_text(Fore.GREEN + '')
+        choice = col_input('')
         if choice.lower() == 'attack':
             print('attack successful')
             spider['health'] -= stats['attack']
             vchoice = True
 
         elif choice.lower() == 'heal':
-            health = heal(health, stats)
+            health = heal(health, stats, classchoice)
             vchoice = True
       
         elif choice.lower() == 'run':
@@ -264,6 +317,7 @@ while game == True:
     print()
     if choice != 'defend' and spider['health'] > 0:
         print('the spider attacks you, dealing', spider['attack'], 'damage ')
+        stats['maxhealth'] -= spider['attack']
         print()
         if vpois == 1:
             slow_text('The spider has poisoned you, you will take an extra 4 damage per turn, the only way to cure poison is by healing')
@@ -279,30 +333,40 @@ while game == True:
 
     if poisonturns > 0:
         print('You have', poisonturns, 'turns left of poison')
-    vhoice = False
+    vchoice = False
+  
+  
+  
+  
+  
+    
+
+
+
+
   game = False
 
 
-stats = levelup(stats)
+stats = levelup(stats, classchoice)
 slow_text(f'''
 
     text to be added
           
           ''')
 guessleft = 1
-riddle = random.randint(0, 5)
+riddle = random.randint(len(riddles))
 print(riddles[riddle])
 answer = answers[riddle]
 print()
 print('what is your answer? ')
-temp = input()
+temp = col_intinput('')
 if temp == answer:
     print('Congratulations, you have got it correct, you may pass, be careful, it is dangerous up ahead ')
 else:
     print('Incorrect, you are not worthy, now be punished '
     '')
     sphinx = {
-       'attack': 20,
+       'attack': 25,
        'health': 200  
     }
     while sphinx['health'] > 0:
@@ -314,15 +378,14 @@ else:
 
 
       while vchoice == False:
-          choice = input(Fore.BLUE + '')
-          slow_text(Fore.GREEN + '')
+          choice = col_input('')
           if choice.lower() == 'attack':
               print('attack successful')
               sphinx['health'] -= stats['attack']
               vchoice = True
 
           elif choice.lower() == 'heal':
-            health = heal(health, stats)
+            health = heal(health, stats, classchoice)
             vchoice = True
       
           elif choice.lower() == 'run':
