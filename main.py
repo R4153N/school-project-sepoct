@@ -324,6 +324,7 @@ while game == True:
             
             poisonturns = 2   
             print() 
+        health -= spider['attack']
 
     if health <= 0:
         slow_text('you died, the demon king lives on, the kingdom waits for their true hero to arrive')
