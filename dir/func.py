@@ -2,7 +2,7 @@ import sys
 import time
 import random
 import colorama
-from colorama import Fore, Back, Style
+from colorama import Fore, Back, Style, Cursor
 from dir.vis import slow_text, col_input
 
 def heal(health, stats, classchoice):

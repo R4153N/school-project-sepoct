@@ -1,5 +1,5 @@
 import colorama
-from colorama import Fore, Back, Style
+from colorama import Fore, Back, Style, Cursor
 import time 
 import sys
 import random
@@ -32,6 +32,8 @@ def col_input(prompt, color = Fore.BLUE):
         a = input(Fore.BLUE)
     print(Fore.RED)
     return a
+
+
 def col_intinput(prompt):
      b = 0
      print(Fore.BLUE)
@@ -61,3 +63,24 @@ def col_intinput(prompt):
      print(Fore.RED)
      return a
 
+def slash_animation(art, delay=0.04, slash_char='/'):
+    lines = art.strip().splitlines()
+    height = len(lines)
+    width = max(len(line) for line in lines)
+
+    term_width = shutil.get_terminal_size().columns
+
+    print("\n" * height) 
+
+    for step in range(width + height):
+        print(Cursor.UP(height), end="")
+        print(Cursor.FORWARD(0), end="")   
+        for y, line in enumerate(lines):
+            chars = list(line.ljust(width))
+            pos = step - y
+            if 0 <= pos < width:
+                chars[pos] = slash_char
+            line_str = "".join(chars)
+            padding = max((term_width - len(line_str)) // 2, 0)
+            print(" " * padding + line_str)
+        time.sleep(delay)

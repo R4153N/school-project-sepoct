@@ -4,9 +4,9 @@ import sys
 import time
 import random
 import colorama
-from colorama import Fore, Back, Style
+from colorama import Fore, Back, Style, Cursor
 from dir.func import heal, levelup
-from dir.vis import slow_text, col_input, col_intinput
+from dir.vis import slow_text, col_input, col_intinput, slash_animation
 import os
 from dir.riddles import answers, riddles
 
@@ -124,7 +124,7 @@ while game == True and health > 0:
      |,;,;,;,;,;,|  ||
       |||||||||||  ||
       |||||||||||   || """
-  print(tutorial_text)
+  slash_animation(tutorial_text)
 
   tutorial_text = f"""
     
@@ -262,7 +262,7 @@ while game == True:
 
     ''' 
   
-  print(lvl1text1)
+  slash_animation(lvl1text1)
 
   
   spider = {
@@ -351,13 +351,11 @@ while game == True:
 stats = levelup(stats, classchoice)
 slow_text(f'''
 
-    text to be added
+    
           
           ''')
-guessleft = 1
-riddle = random.randint(len(riddles))
-print(riddles[riddle])
-answer = answers[riddle]
+riddle, answer = random.choice(list(zip(riddles, answers)))
+print(riddle)
 print()
 print('what is your answer? ')
 temp = col_intinput('')
