@@ -181,6 +181,7 @@ while game == True and health > 0:
       
       else: 
         slow_text('invalid choice')
+        print()
     
     print()
     
@@ -244,7 +245,7 @@ while game == True:
     '''
   slow_text(lvl1text1)
   lvl1text1 = f'''
-       (
+              (
                )
               (
         /\  .-"""-.  /|
@@ -312,7 +313,7 @@ while game == True:
       
         else: 
             slow_text('invalid choice')
-  
+            print()
             print()
     print()
     if choice != 'defend' and spider['health'] > 0:
@@ -351,7 +352,7 @@ while game == True:
 stats = levelup(stats, classchoice)
 slow_text(f'''
 
-    
+      idfk cuh u fall through floor explore floor and find sphinx, answer the riddle type shit  
           
           ''')
 riddle, answer = random.choice(list(zip(riddles, answers)))

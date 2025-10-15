@@ -57,10 +57,10 @@ def levelup(stats, classchoice):
     Your attack is now {stats['attack']}, 
 
     '''
+  print(temp)
   if classchoice != 2:
     print('Your healing power is now', stats['heal'])
 
   
 
   return(stats)
-  slow_text(temp)
