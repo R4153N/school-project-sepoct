@@ -6,7 +6,7 @@ import random
 import shutil 
 import os
 
-def slow_text(text, min_delay=0.01, max_delay=0.02, newLine = False, vertical_padding=True):
+def slow_text(text, min_delay=0.05, max_delay=0.07, newLine = False, vertical_padding=True):
     terminal_size = shutil.get_terminal_size()
     width = terminal_size.columns
     height = terminal_size.lines

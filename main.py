@@ -130,7 +130,7 @@ while game == True and health > 0:
     
     Sensei:
 
-    Welcome to gameville, traveller
+    Welcome to zadonia, traveller
 
     Here you will learn to fight back against the demons that have been terrorising us
 
@@ -139,7 +139,7 @@ while game == True and health > 0:
     When in combat, you have the choice to either attack, defend, run, or heal (you can not heal past your max health)
 
     You will practice on this dummy
-    You currently deal { stats['attack'] } damage per shot, the dummies health is 5.0
+    You currently deal { stats['attack'] } damage per shot, the dummies health is 50
 
 
     """
